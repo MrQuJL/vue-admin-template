@@ -28,8 +28,9 @@ export default {
     // use $_ for mixins properties
     // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
     $_isMobile() {
-      const rect = body.getBoundingClientRect()
-      return rect.width - 1 < WIDTH
+      // const rect = body.getBoundingClientRect()
+      // return rect.width - 1 < WIDTH
+      return window.innerWidth < 768 // 直接使用视口宽度
     },
     $_resizeHandler() {
       if (!document.hidden) {
