@@ -19,8 +19,12 @@ export default {
   },
   mounted() {
     const isMobile = this.$_isMobile()
+    const isTablet = this.$_isTablet()
     if (isMobile) {
       store.dispatch('app/toggleDevice', 'mobile')
+      store.dispatch('app/closeSideBar', { withoutAnimation: true })
+    } else if (isTablet) {
+      store.dispatch('app/toggleDevice', 'tablet')
       store.dispatch('app/closeSideBar', { withoutAnimation: true })
     }
   },
@@ -32,12 +36,17 @@ export default {
       // return rect.width - 1 < WIDTH
       return window.innerWidth < 768 // 直接使用视口宽度
     },
+    $_isTablet() {
+      const width = window.innerWidth;
+      return width >= 768 && width <= 1024;
+    },
     $_resizeHandler() {
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
-        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
+        const isTablet = this.$_isTablet()
+        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop')
 
-        if (isMobile) {
+        if (isMobile || isTablet) {
           store.dispatch('app/closeSideBar', { withoutAnimation: true })
         }
       }
