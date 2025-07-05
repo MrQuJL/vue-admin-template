@@ -37,8 +37,8 @@ export default {
       return window.innerWidth < 768 // 直接使用视口宽度
     },
     $_isTablet() {
-      const width = window.innerWidth;
-      return width >= 768 && width <= 1024;
+      const width = window.innerWidth
+      return width >= 768 && width <= 1024
     },
     $_resizeHandler() {
       if (!document.hidden) {
