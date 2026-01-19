@@ -1,15 +1,15 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export function getTreeList(params) {
   if (process.env.NODE_ENV === 'development') {
     return request({
-      url: '/table.json',
+      url: '/tree.json',
       method: 'get',
       baseURL: '/'
     })
   }
   return request({
-    url: '/table/list',
+    url: '/tree/list',
     method: 'get',
     params
   })

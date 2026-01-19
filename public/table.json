@@ -1,0 +1,48 @@
+{
+  "code": 20000,
+  "data": {
+    "total": 5,
+    "items": [
+      {
+        "id": "1",
+        "title": "Static Data: Vue Admin Template",
+        "status": "published",
+        "author": "PanJiaChen",
+        "display_time": "2023-10-01 10:00:00",
+        "pageviews": 1024
+      },
+      {
+        "id": "2",
+        "title": "Static Data: Frontend Development",
+        "status": "draft",
+        "author": "Developer",
+        "display_time": "2023-10-02 11:30:00",
+        "pageviews": 500
+      },
+      {
+        "id": "3",
+        "title": "Static Data: Backend Integration",
+        "status": "deleted",
+        "author": "Backend",
+        "display_time": "2023-10-03 14:15:00",
+        "pageviews": 200
+      },
+      {
+        "id": "4",
+        "title": "Static Data: Testing Strategies",
+        "status": "published",
+        "author": "Tester",
+        "display_time": "2023-10-04 09:45:00",
+        "pageviews": 350
+      },
+      {
+        "id": "5",
+        "title": "Static Data: Deployment Pipelines",
+        "status": "published",
+        "author": "DevOps",
+        "display_time": "2023-10-05 08:20:00",
+        "pageviews": 800
+      }
+    ]
+  }
+}

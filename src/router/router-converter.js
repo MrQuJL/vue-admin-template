@@ -7,22 +7,22 @@ import Layout from '@/layout'
  */
 export function convertJsonToVueRoutes(jsonRoutes) {
   function processRoute(route) {
-    const newRoute = { ...route };
-    
+    const newRoute = { ...route }
+
     if (newRoute.component) {
       if (newRoute.component === 'Layout') {
-        newRoute.component = Layout;
+        newRoute.component = Layout
       } else {
-        newRoute.component = () => import(`${newRoute.component}`);
+        newRoute.component = () => import(`${newRoute.component}`)
       }
     }
-    
+
     if (newRoute.children?.length) {
-      newRoute.children = newRoute.children.map(processRoute);
+      newRoute.children = newRoute.children.map(processRoute)
     }
-    
-    return newRoute;
+
+    return newRoute
   }
-  
-  return jsonRoutes.map(processRoute);
+
+  return jsonRoutes.map(processRoute)
 }

@@ -1,24 +1,45 @@
 import request from '@/utils/request'
 
 export function login(data) {
+  if (process.env.NODE_ENV === 'development') {
+    return request({
+      url: '/user_login.json',
+      method: 'get',
+      baseURL: '/'
+    })
+  }
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/user/login',
     method: 'post',
     data
   })
 }
 
 export function getInfo(token) {
+  if (process.env.NODE_ENV === 'development') {
+    return request({
+      url: '/user_info.json',
+      method: 'get',
+      baseURL: '/'
+    })
+  }
   return request({
-    url: '/vue-admin-template/user/info',
+    url: '/user/info',
     method: 'get',
     params: { token }
   })
 }
 
 export function logout() {
+  if (process.env.NODE_ENV === 'development') {
+    return request({
+      url: '/user_logout.json',
+      method: 'get',
+      baseURL: '/'
+    })
+  }
   return request({
-    url: '/vue-admin-template/user/logout',
+    url: '/user/logout',
     method: 'post'
   })
 }
