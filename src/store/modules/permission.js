@@ -1,37 +1,32 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import { constantRoutes } from '@/router'
+import Layout from '@/layout'
+import { routeMap } from '@/router/index'
 
 /**
- * Use meta.role to determine if the current user has permission
- * @param roles
- * @param route
+ * 将JSON路由配置转换为Vue2路由对象数组（包含Layout组件处理）
+ * @param {Array} jsonRoutes - JSON格式的路由配置数组
+ * @returns {Array} Vue2路由对象数组
  */
-function hasPermission(roles, route) {
-  if (route.meta && route.meta.roles) {
-    return roles.some(role => route.meta.roles.includes(role))
-  } else {
-    return true
-  }
-}
+export function convertJsonToVueRoutes(jsonRoutes) {
+  function processRoute(route) {
+    const newRoute = { ...route }
 
-/**
- * Filter asynchronous routing tables by recursion
- * @param routes asyncRoutes
- * @param roles
- */
-export function filterAsyncRoutes(routes, roles) {
-  const res = []
-
-  routes.forEach(route => {
-    const tmp = { ...route }
-    if (hasPermission(roles, tmp)) {
-      if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, roles)
+    if (newRoute.component) {
+      if (newRoute.component === 'Layout') {
+        newRoute.component = Layout
+      } else {
+        newRoute.component = routeMap[newRoute.component]
       }
-      res.push(tmp)
     }
-  })
 
-  return res
+    if (newRoute.children?.length) {
+      newRoute.children = newRoute.children.map(processRoute)
+    }
+
+    return newRoute
+  }
+
+  return jsonRoutes.map(processRoute)
 }
 
 const state = {
@@ -47,14 +42,9 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes({ commit }, roles) {
+  generateRoutes({ commit }, menus) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
+      const accessedRoutes = convertJsonToVueRoutes(menus)
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })

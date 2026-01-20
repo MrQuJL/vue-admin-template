@@ -169,6 +169,24 @@ export const asyncRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+// 路由组件映射表
+export const routeMap = {
+  'Layout': Layout,
+  '@/views/login/index': () => import('@/views/login/index'),
+  '@/views/404': () => import('@/views/404'),
+  '@/views/dashboard/index': () => import('@/views/dashboard/index'),
+  '@/views/table/index': () => import('@/views/table/index'),
+  '@/views/tree/index': () => import('@/views/tree/index'),
+  '@/views/form/index': () => import('@/views/form/index'),
+  '@/views/nested/menu1/index': () => import('@/views/nested/menu1/index'),
+  '@/views/nested/menu1/menu1-1': () => import('@/views/nested/menu1/menu1-1'),
+  '@/views/nested/menu1/menu1-2': () => import('@/views/nested/menu1/menu1-2'),
+  '@/views/nested/menu1/menu1-2/menu1-2-1': () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+  '@/views/nested/menu1/menu1-2/menu1-2-2': () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+  '@/views/nested/menu1/menu1-3': () => import('@/views/nested/menu1/menu1-3'),
+  '@/views/nested/menu2/index': () => import('@/views/nested/menu2/index')
+}
+
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),

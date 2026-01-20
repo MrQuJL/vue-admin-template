@@ -7,7 +7,7 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: []
+    menus: []
   }
 }
 
@@ -26,8 +26,8 @@ const mutations = {
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  SET_ROLES: (state, roles) => {
-    state.roles = roles
+  SET_MENUS: (state, menus) => {
+    state.menus = menus
   }
 }
 
@@ -57,14 +57,14 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, name, avatar } = data
+        const { menus, name, avatar } = data
 
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
+        // menus must be a non-empty array
+        if (!menus || menus.length <= 0) {
+          reject('getInfo: menus must be a non-null array!')
         }
 
-        commit('SET_ROLES', roles)
+        commit('SET_MENUS', menus)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         resolve(data)

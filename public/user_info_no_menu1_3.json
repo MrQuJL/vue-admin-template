@@ -1,9 +1,9 @@
 {
   "code": 20000,
   "data": {
-    "name": "Super Admin",
-    "avatar": "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
-    "introduction": "I am a super administrator",
+    "name": "Normal User",
+    "avatar": "https://i.pravatar.cc/150?img=3",
+    "introduction": "I am a normal user",
     "menus": [
       {
         "path": "/nested",
@@ -46,12 +46,6 @@
                     "meta": { "title": "Menu1-2-2" }
                   }
                 ]
-              },
-              {
-                "path": "menu1-3",
-                "component": "@/views/nested/menu1/menu1-3",
-                "name": "Menu1-3",
-                "meta": { "title": "Menu1-3" }
               }
             ]
           },

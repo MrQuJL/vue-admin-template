@@ -18,7 +18,7 @@ export function login(data) {
 export function getInfo(token) {
   if (process.env.NODE_ENV === 'development') {
     return request({
-      url: '/user_info.json',
+      url: '/user_info_no_menu1_3.json',
       method: 'get',
       baseURL: '/'
     })
